@@ -1,0 +1,27 @@
+#Given two strings s and t, determine if they are isomorphic.
+
+#Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+
+#All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, 
+#but a character may map to itself.
+
+
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        s_to_t = {}
+        t_to_s = {}
+        for x, i in enumerate(s):
+            if i in s_to_t:
+                if s_to_t.get(i) != t[x]:
+                    return False
+            else: 
+                s_to_t.update({i:t[x]})
+            if t[x] in t_to_s.values():
+                if t_to_s.get(i) != t[x]:
+                    return False
+            else: 
+                t_to_s.update({i:t[x]})
+        
+        if s_to_t == t_to_s:
+            return True
+            
